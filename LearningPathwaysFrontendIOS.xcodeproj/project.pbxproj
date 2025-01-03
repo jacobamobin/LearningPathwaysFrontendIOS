@@ -16,6 +16,11 @@
 			path = LearningPathwaysFrontendIOS;
 			sourceTree = "<group>";
 		};
+		2CD3CB2E2D27637D00B96B8F /* LogIn */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LogIn;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +39,7 @@
 			children = (
 				2CD3CB1D2D27630A00B96B8F /* LearningPathwaysFrontendIOS */,
 				2CD3CB1C2D27630A00B96B8F /* Products */,
+				2CD3CB2E2D27637D00B96B8F /* LogIn */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2CD3CB1D2D27630A00B96B8F /* LearningPathwaysFrontendIOS */,
+				2CD3CB2E2D27637D00B96B8F /* LogIn */,
 			);
 			name = LearningPathwaysFrontendIOS;
 			packageProductDependencies = (
