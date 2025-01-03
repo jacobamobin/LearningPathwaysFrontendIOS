@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PhoneNumberKit
+import iPhoneNumberField
 
 struct OnboardingDetails: View {
     @State private var firstName: String = ""
@@ -21,10 +23,10 @@ struct OnboardingDetails: View {
                 OnboardingCombinedPage(title: "What's your name?", firstName: $firstName, lastName: $lastName, action: nextPage, backAction: previousPage)
                     .transition(.opacity)
             } else if currentPage == 1 {
-                OnboardingPage(title: "What's your phone number?", placeholder: "Phone Number", text: $phoneNumber, keyboardType: .phonePad, action: nextPage, backAction: previousPage)
+                OnboardingPage(title: "What's your email address?", placeholder: "Email Address", text: $emailAddress, keyboardType: .emailAddress, action: nextPage, backAction: previousPage)
                     .transition(.opacity)
             } else if currentPage == 2 {
-                OnboardingPage(title: "What's your email address?", placeholder: "Email Address", text: $emailAddress, keyboardType: .emailAddress, action: nextPage, backAction: previousPage)
+                OnboardingPhonePage(title: "What's your phone number?", phoneNumber: $phoneNumber, keyboardType: .phonePad, action: nextPage, backAction: previousPage)
                     .transition(.opacity)
             } else if currentPage == 3 {
                 OnboardingPage(title: "How old are you?", placeholder: "Age", text: $age, keyboardType: .numberPad, action: submit, backAction: previousPage)
@@ -52,6 +54,77 @@ struct OnboardingDetails: View {
 
     private func submit() {
         print("First Name: \(firstName), Last Name: \(lastName), Phone: \(phoneNumber), Email: \(emailAddress), Age: \(age)")
+    }
+}
+
+struct OnboardingPhonePage: View {
+    let title: String
+    @Binding var phoneNumber: String
+    var keyboardType: UIKeyboardType = .phonePad
+    let action: () -> Void
+    let backAction: (() -> Void)?
+    
+    var body: some View {
+        VStack {
+            Spacer()
+
+            Text(title)
+                .font(.system(size: 24, weight: .bold))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+                .padding(.bottom, -5)
+
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .frame(height: 70)
+                    .padding(15)
+                    .foregroundStyle(Color(UIColor.secondarySystemBackground))
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                
+                iPhoneNumberField("Phone", text: $phoneNumber)
+                    .flagHidden(false)
+                    .flagSelectable(true)
+                    .font(UIFont(size: 30, weight: .bold, design: .rounded))
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 20)
+                    .onChange(of: phoneNumber) {
+                            if phoneNumber.count > 15 {
+                                phoneNumber = String(phoneNumber.prefix(15))
+                            }
+                        }
+            }
+            
+            
+
+
+            HStack(spacing: 16) {
+                Button(action: { backAction?() }) {
+                    Text("Back")
+                        .font(.system(size: 18, weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .foregroundColor(.blue)
+                        .cornerRadius(12)
+                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                }
+
+                Button(action: action) {
+                    Text("Next")
+                        .font(.system(size: 18, weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(color: Color.blue.opacity(0.4), radius: 4, x: 0, y: 2)
+                }
+            }
+            .padding(.horizontal)
+
+            Spacer()
+        }
+        .padding()
     }
 }
 

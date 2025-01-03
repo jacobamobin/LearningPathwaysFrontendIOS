@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2CD3CB372D276EAF00B96B8F /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD3CB362D276EAF00B96B8F /* iPhoneNumberField */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2CD3CB1B2D27630A00B96B8F /* LearningPathwaysFrontendIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningPathwaysFrontendIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -28,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD3CB372D276EAF00B96B8F /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +77,7 @@
 			);
 			name = LearningPathwaysFrontendIOS;
 			packageProductDependencies = (
+				2CD3CB362D276EAF00B96B8F /* iPhoneNumberField */,
 			);
 			productName = LearningPathwaysFrontendIOS;
 			productReference = 2CD3CB1B2D27630A00B96B8F /* LearningPathwaysFrontendIOS.app */;
@@ -101,6 +107,9 @@
 			);
 			mainGroup = 2CD3CB122D27630A00B96B8F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2CD3CB352D276EAF00B96B8F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2CD3CB1C2D27630A00B96B8F /* Products */;
 			projectDirPath = "";
@@ -331,6 +340,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CD3CB352D276EAF00B96B8F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CD3CB362D276EAF00B96B8F /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD3CB352D276EAF00B96B8F /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CD3CB132D27630A00B96B8F /* Project object */;
 }
