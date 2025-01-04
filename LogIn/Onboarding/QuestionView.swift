@@ -41,16 +41,15 @@ struct QuestionView: View {
                 .padding()
         }
         .padding()
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.05), Color.purple.opacity(0.05)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
+        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
         .navigationTitle("Confirmation")
         .navigationBarBackButtonHidden(true)
     }
 }
 
 struct questionData {
-    let ITquestions = []
-    let LAWquestions = []
-    
+    let ITquestions: [String] = []
+    let LAWquestions: [String] = []
 }
 
 #Preview {

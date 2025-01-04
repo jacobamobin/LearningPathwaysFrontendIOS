@@ -34,7 +34,7 @@ struct OnboardingDetails: View {
             }
         }
         .animation(.easeInOut, value: currentPage)
-        .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
+        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
         .onAppear {
             UITextField.appearance().clearButtonMode = .whileEditing
         }

@@ -18,20 +18,20 @@ struct NicheSelection: View {
                               image: "desktopcomputer",
                               sfSymbol: "cpu",
                               subtopics: [
-                                "Data: Learn how information is stored, organized, and analyzed.",
-                                "Software Development: Dive into coding, app creation, and software engineering principles.",
-                                "Networking: Explore how devices connect, share, and communicate securely.",
-                                "Cybersecurity: Understand how to protect digital assets and combat cyber threats."
+                                "Data:Learn how information is stored, organized, and analyzed.",
+                                "Software Development:Dive into coding, app creation, and software engineering principles.",
+                                "Networking:Explore how devices connect, share, and communicate securely.",
+                                "Cybersecurity:Understand how to protect digital assets and combat cyber threats."
                               ])
                     
                     NicheCard(topic: "Law",
                               image: "scales",
                               sfSymbol: "doc.text",
                               subtopics: [
-                                "Criminal Law: Study justice systems and crime prevention techniques.",
-                                "Corporate Law: Learn the legal framework for businesses and organizations.",
-                                "Family Law: Explore laws related to personal relationships and domestic matters.",
-                                "Environmental Law: Focus on legal approaches to protecting natural resources."
+                                "Criminal Law:Study justice systems and crime prevention techniques.",
+                                "Corporate Law:Learn the legal framework for businesses and organizations.",
+                                "Family Law:Explore laws related to personal relationships and domestic matters.",
+                                "Environmental Law:Focus on legal approaches to protecting natural resources."
                               ])
                 }
                 .padding()
@@ -49,12 +49,20 @@ struct NicheCard: View {
     let sfSymbol: String
     let subtopics: [String]
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         NavigationLink(destination: SubtopicSelectionView(topic: topic, subtopics: subtopics)) {
             HStack {
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.blue, Color.purple]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                         .frame(width: 60, height: 60)
                     
                     Image(systemName: sfSymbol)
@@ -66,28 +74,32 @@ struct NicheCard: View {
                     Text(topic)
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                        .foregroundColor(colorScheme == .dark ? .white : .primary)
                     
                     Text("\(subtopics.count) subtopics")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(colorScheme == .dark ? .white.opacity(0.7) : .secondary)
                 }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
+                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.7) : .gray)
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.white)
-                    .shadow(color: .gray.opacity(0.2), radius: 10, x: 0, y: 5)
+                    .fill(colorScheme == .dark ? Color(.systemGray5) : Color.white)
+                    .shadow(
+                        color: colorScheme == .dark ? .clear : .gray.opacity(0.2),
+                        radius: 10, x: 0, y: 5
+                    )
             )
             .padding(.horizontal)
         }
     }
 }
+
 
 struct SubtopicSelectionView: View {
     let topic: String
@@ -147,7 +159,7 @@ struct SubtopicSelectionView: View {
                             .padding()
                             .background(selectedSubtopic == subtopic ? Color.blue : Color(.systemGray6))
                             .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 10, x: 0, y: 5)
+                            .shadow(color: .gray.opacity(0.05), radius: 10, x: 0, y: 5)
                         }
                         .padding(.horizontal)
                     }
@@ -171,7 +183,7 @@ struct SubtopicSelectionView: View {
                 .padding(.bottom, 20)
             }
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
+        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.2)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
     }
 }
 
