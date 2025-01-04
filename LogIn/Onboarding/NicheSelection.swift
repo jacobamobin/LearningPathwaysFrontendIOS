@@ -17,12 +17,22 @@ struct NicheSelection: View {
                     NicheCard(topic: "Information Technology",
                               image: "desktopcomputer",
                               sfSymbol: "cpu",
-                              subtopics: ["Data", "Software Development", "Networking", "Cybersecurity"])
+                              subtopics: [
+                                "Data: Learn how information is stored, organized, and analyzed.",
+                                "Software Development: Dive into coding, app creation, and software engineering principles.",
+                                "Networking: Explore how devices connect, share, and communicate securely.",
+                                "Cybersecurity: Understand how to protect digital assets and combat cyber threats."
+                              ])
                     
                     NicheCard(topic: "Law",
                               image: "scales",
                               sfSymbol: "doc.text",
-                              subtopics: ["Criminal Law", "Corporate Law", "Family Law", "Environmental Law"])
+                              subtopics: [
+                                "Criminal Law: Study justice systems and crime prevention techniques.",
+                                "Corporate Law: Learn the legal framework for businesses and organizations.",
+                                "Family Law: Explore laws related to personal relationships and domestic matters.",
+                                "Environmental Law: Focus on legal approaches to protecting natural resources."
+                              ])
                 }
                 .padding()
             }
@@ -118,12 +128,13 @@ struct SubtopicSelectionView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 5) {
-                                    Text(subtopic)
+                                    Text(subtopic.components(separatedBy: ":")[0])
                                         .font(.headline)
                                         .foregroundColor(selectedSubtopic == subtopic ? .white : .primary)
-                                    Text("Dive deeper into \(subtopic).")
+                                    Text(subtopic.components(separatedBy: ":")[1])
                                         .font(.subheadline)
                                         .foregroundColor(selectedSubtopic == subtopic ? .white.opacity(0.8) : .secondary)
+                                        .multilineTextAlignment(.leading)
                                 }
                                 
                                 Spacer()
@@ -146,7 +157,7 @@ struct SubtopicSelectionView: View {
             Spacer()
             
             if let selectedSubtopic = selectedSubtopic {
-                NavigationLink(destination: QuestionView(topic: topic, subtopic: selectedSubtopic)) {
+                NavigationLink(destination: QuestionView(topic: topic, subtopic: selectedSubtopic).navigationBarBackButtonHidden(true)) {
                     Text("Continue")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -161,46 +172,6 @@ struct SubtopicSelectionView: View {
             }
         }
         .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
-    }
-}
-
-struct QuestionView: View {
-    let topic: String
-    let subtopic: String
-    
-    var body: some View {
-        VStack {
-            Text("Your Selection")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Topic: \(topic)")
-                    .font(.headline)
-                
-                Text("Subtopic: \(subtopic)")
-                    .font(.headline)
-            }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.white)
-                    .shadow(color: .gray.opacity(0.2), radius: 10, x: 0, y: 5)
-            )
-            .padding(.horizontal)
-            
-            Spacer()
-            
-            // Placeholder for questions
-            Text("The next screen will feature 10 questions.")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .padding()
-        }
-        .padding()
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.05), Color.purple.opacity(0.05)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea())
-        .navigationTitle("Confirmation")
     }
 }
 
